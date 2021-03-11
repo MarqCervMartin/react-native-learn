@@ -3,8 +3,12 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 export class ArtistBox extends Component {
+    componentDidMount(){
+        console.log(this.props.artist.item)
+    }
+
     render() {
-        const { image, name, likes, comments} = this.props.artist;
+        const { image, name, likes, comments} = this.props.artist.item;
         return (
             <View style={styles.artisBox} >
                 <Image style={styles.image} source={{uri: image }}/>

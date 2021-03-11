@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
-import ArtistBox from './components/ArtistBox';
+import ArtistList from './components/ArtistList';
 export class App extends Component {
   render() {
+
     const artist = {
       image: 'http://t0.gstatic.com/images?q=tbn:ANd9GcRXGalhjKccxz2TmFM9ZPROJKvXYGrr_VxArjq9dCOE37UUprLs7I8YiPJCKZaC',
       name: 'Hayley Paramore',
       likes: 200,
       comments: 140,
     }
+    const artists = Array(10).fill(artist);
+    
     return (
-      <ScrollView style={styles.container}>
-
-        {
-          Array(500).fill(artist).map(artist =>{
-            return <ArtistBox artist={artist}/>
-
-          })
-        }
-        
-      </ScrollView>
+      <View style={styles.container}>
+        <ArtistList artists={artists}/>
+      </View>
+      
     )
   }
 }
