@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, ScrollView } from 'react-native'
 
 import ArtistBox from './components/ArtistBox';
 export class App extends Component {
@@ -11,15 +11,16 @@ export class App extends Component {
       comments: 140,
     }
     return (
-      <View style={styles.container}>
-        <ArtistBox artist={artist}/>
+      <ScrollView style={styles.container}>
 
-        <ArtistBox artist={artist}/>
-        <ArtistBox artist={artist}/>
-        <ArtistBox artist={artist}/>
-        <ArtistBox artist={artist}/>
-        <ArtistBox artist={artist}/>
-      </View>
+        {
+          Array(500).fill(artist).map(artist =>{
+            return <ArtistBox artist={artist}/>
+
+          })
+        }
+        
+      </ScrollView>
     )
   }
 }
