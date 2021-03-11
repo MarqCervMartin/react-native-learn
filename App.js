@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import ArtistList from './components/ArtistList';
-export class App extends Component {
-  render() {
+import { getArtists } from './components/api-client'
 
-    const artist = {
-      image: 'http://t0.gstatic.com/images?q=tbn:ANd9GcRXGalhjKccxz2TmFM9ZPROJKvXYGrr_VxArjq9dCOE37UUprLs7I8YiPJCKZaC',
-      name: 'Hayley Paramore',
-      likes: 200,
-      comments: 140,
-    }
-    const artists = Array(10).fill(artist);
+
+export class App extends Component {
+  state = {
+    artists: []
+  }
+
+  componentDidMount(){
+    getArtists().then((data) => this.setState({artists: data}))
+  }
+
+  render() {
+    const artists = this.state.artists;
     
     return (
       <View style={styles.container}>
