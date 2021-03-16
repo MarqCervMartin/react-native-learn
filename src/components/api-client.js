@@ -6,7 +6,9 @@ function getArtists(){
                     .then( artists => artists.map(artist =>{
                         return {
                             name: artist.name,
-                            image: artist.image[3]['#text']
+                            image: artist.image[3]['#text'],
+                            likes: 20,
+                            comments: 30
                         }
                     }))
 }
