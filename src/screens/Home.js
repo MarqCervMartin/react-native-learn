@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack'
+import ArtistList from './ArtistList'
+import ArtistDetail from './ArtistDetail'
 
-import ArtistList from '../components/ArtistList'
-import { getArtists } from '../components/api-client'
+const Stack = createStackNavigator();
 
-const Home = (props) => {
-    const [artists, setArtists] = useState([]);
-
-    useEffect(() =>{
-        getArtists().then((data) => setArtists(data))
-        //console.log(artists);
-    },[])
+const Home = () => {
 
     return (
-        <View style={styles.container}>
-            <ArtistList artists={artists}/>
-        </View>
-    )
+        <Stack.Navigator>
+            <Stack.Screen name="Artist List" component={ArtistList} />
+            <Stack.Screen name="Artist Detail" component={ArtistDetail} />
+        </Stack.Navigator>
+        
+    );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'lightgray',
-      paddingTop: 50,
-    },
-});
 
 export default Home

@@ -10,7 +10,7 @@ const ArtistBox = ({artist}) => {
       name: artist.item.name,
       likes: artist.item.likes,
       comments: artist.item.comments});
-    console.log(artista)
+    //console.log(artista)
     
   },[]);
 
