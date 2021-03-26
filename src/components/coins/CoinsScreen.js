@@ -4,6 +4,7 @@ import Http from 'cryptoTracker/src/libs/Http'
 
 //component
 import CoinsItem from './CoinsItem'
+import Colors from 'cryptoTracker/src/res/colors'
 
 class CoinsScreen extends Component{
 
@@ -48,7 +49,7 @@ class CoinsScreen extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: Colors.charade,
     },
     titleText: {
         color: "#fff",
