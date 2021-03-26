@@ -14,9 +14,9 @@ class Http{
         }
     }
 
-    post = async () =>{
+    post = async (url, body) =>{
         try{
-            let req = fetch(url, {
+            let req = await fetch(url, {
                 method: "POST",
                 body
             });

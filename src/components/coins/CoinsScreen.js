@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text, ActivityIndicator, StyleSheet, FlatList} from 'react-native'
-import Http from 'cryptoTracker/src/libs/http'
+import Http from 'cryptoTracker/src/libs/Http'
 
 //component
 import CoinsItem from './CoinsItem'
@@ -15,7 +15,8 @@ class CoinsScreen extends Component{
     componentDidMount = async () =>{
         this.setState({loading: true})
         const res = await Http.instance.get("https://api.coinlore.net/api/tickers/");
-        this.state({coins: res.data, loading:false})
+        console.log(res.data)
+        this.setState({coins: res.data, loading:false})
     }
 
     handlePress = () => {
@@ -32,7 +33,7 @@ class CoinsScreen extends Component{
                     <ActivityIndicator 
                         style={styles.loader}
                         color="#fff" 
-                        size={large} 
+                        size="large"
                     />
                     : null
                 }
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        alignItems: 'center'
     },
     titleText: {
         color: "#fff",
