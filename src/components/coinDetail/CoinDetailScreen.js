@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, SectionList, FlatList, Pressable} from 'react-native'
+import { 
+    Text, 
+    View, 
+    Image, 
+    StyleSheet, 
+    SectionList, 
+    FlatList, 
+    Pressable,
+    Alert} from 'react-native'
 import Colors from '../../res/colors'
 import Http from 'cryptoTracker/src/libs/Http'
 import CoinMarketItem from './CoinMarketItem'
@@ -28,8 +36,38 @@ class CoinDetailScreen extends Component {
             this.setState({isFavorite: true})
         }
     }
-    removeFavorite = ()=>{
+    removeFavorite = async()=>{
+        Alert.alert("Remove favorite", "Are you shure?",[
+            {
+                text: "cancel",
+                onPress: () =>{},
+                style: "cancel"
+            },
+            {
+                text: "Remove",
+                onPress: async()=>{
+                    const key = `favorite-${this.state.coin.id}`;
+                    await Storage.instance.remove(key);
+                    this.setState({isFavorite: false}) 
+                },
+                style: 'destructive'
+            }
+        ])
+        
+    }
 
+    getFavorite = async() =>{
+        try {
+            const key = `favorite-${this.state.coin.id}`;
+            const favStr = await Storage.instance.get(key);
+            //console.log("favorites", favStr)
+        
+            if(favStr != null){
+                this.setState({isFavorite: true})
+            }
+        } catch (error) {
+            console.log("get favorites err", error)
+        }
     }
 
     getSymbolIcon = (nameStr) =>{
@@ -71,7 +109,9 @@ class CoinDetailScreen extends Component {
         this.props.navigation.setOptions({title: coin.symbol})
 
         this.getMarkets(coin.id)
-        this.setState({coin})
+        this.setState({coin}, () =>{
+            this.getFavorite();
+        })
     }
 
     render() {
