@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-navigation/stack'
 
 class Storage{
-    static instance = Storage();
+    static instance = new Storage();
 
     store = async(key, value) =>{
         try {
@@ -48,3 +48,4 @@ class Storage{
         }
     }
 }
+export default Storage
