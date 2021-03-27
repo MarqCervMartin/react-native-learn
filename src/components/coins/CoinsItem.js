@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform, TouchableOpacity, Image } from 'react-native'
 import Colors from 'cryptoTracker/src/res/colors'
 
 const CoinsItem = ({item}) => {
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         padding: 16,
         borderBottomColor: Colors.zircon,
         borderBottomWidth: 1,
+        marginLeft: Platform.OS == 'ios' ? 0 : 16,
         marginLeft: Platform.OS == 'ios' ? 16 : 0
     },
     row: {
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         marginRight:16
     },
     priceText:{
-        color="#fff",
+        color:"#fff",
         fontSize: 14
     },
     percentText: {

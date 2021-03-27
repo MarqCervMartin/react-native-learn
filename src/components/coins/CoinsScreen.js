@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, ActivityIndicator, StyleSheet, FlatList} from 'react-native'
+import {View, Text, ActivityIndicator, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
 import Http from 'cryptoTracker/src/libs/Http'
 
 //component
@@ -20,10 +20,9 @@ class CoinsScreen extends Component{
         this.setState({coins: res.data, loading:false})
     }
 
-    handlePress = () => {
-        console.log("go to detail", this.props)
-
-        this.props.navigate('CoinDetail')
+    handlePress = (coin) => {
+        this.props.navigation.navigate('CoinDetail', {coin})
+        console.log(coin)
     }
     render(){
         const {coins, loading} = this.state;
@@ -40,7 +39,14 @@ class CoinsScreen extends Component{
                 }
                 <FlatList 
                     data={coins}
-                    renderItem={({item})=> <CoinsItem item={item}/>}
+                    renderItem={({item})=> 
+                        <TouchableOpacity onPress={() => this.handlePress(item)}>
+                           <CoinsItem 
+                            item={item} 
+                            /> 
+                        </TouchableOpacity>
+                        
+                    }
                 />
             </View>
         );
