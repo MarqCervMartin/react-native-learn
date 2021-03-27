@@ -29,14 +29,17 @@ class Storage{
             throw Error(error);
         }
     }
-    getAllkeys = async() =>{
+    getAllkeys = async () => {
         try {
-            return await AsyncStorage.getAllkeys();
-        } catch (error) {
-            console.log("Storage getAllkeys err", error)
-            throw Error(error);
+    
+          return await AsyncStorage.getAllKeys();
+    
+        } catch(err) {
+          console.log("storage getAllKeys err", err);
+    
+          throw Error(err);
         }
-    }
+      }
 
     remove = async(key) =>{
         try {
