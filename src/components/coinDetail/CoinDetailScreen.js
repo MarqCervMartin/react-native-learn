@@ -3,7 +3,7 @@ import { Text, View, Image, StyleSheet, SectionList, FlatList, Pressable} from '
 import Colors from '../../res/colors'
 import Http from 'cryptoTracker/src/libs/Http'
 import CoinMarketItem from './CoinMarketItem'
-import Storage from 'cryptoTracker/src/libs/storage'
+import Storage from 'cryptoTracker/src/libs/Storage'
 import colors from '../../res/colors'
 class CoinDetailScreen extends Component {
     state = {
@@ -18,12 +18,12 @@ class CoinDetailScreen extends Component {
             this.addFavorite();
         }
     }
-    addFavorite = () =>{
+    addFavorite = async() =>{
         const coin = JSON.stringify(this.state.coin);
         const key = `favorite-${this.state.coin.id}`;
 
-        const stored = Storage.instance.store(key, coin);
-
+        const stored = await Storage.instance.store(key, coin);
+        console.log("stored", stored)
         if(stored){
             this.setState({isFavorite: true})
         }
@@ -76,7 +76,7 @@ class CoinDetailScreen extends Component {
 
     render() {
         const {coin, markets, isFavorite} = this.state;
-        console.log("markets: ",markets)
+        //console.log("markets: ",markets)
         return (
             <View style={styles.container}>
                 <View style={styles.subHeader}>
