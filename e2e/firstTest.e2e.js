@@ -1,5 +1,5 @@
 describe('Example', () => {
-  before(async () => {
+  beforeAll(async () => {
     await device.launchApp();
   });
 /*
@@ -23,7 +23,7 @@ describe('Example', () => {
   })
 
   it('Should have a alert with typed text', async() => {
-    await expect(element(by.text(typedText)).atIndex(1))toBeVisible();
+    await expect(element(by.text(typedText)).atIndex(0)).toBeVisible();
     await element(by.text('OK')).tap();
   })
 });
